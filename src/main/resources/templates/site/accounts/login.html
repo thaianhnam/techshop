@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{site/dashboardLayout.html}">
+
+<head>
+
+</head>
+
+<body>
+
+    <section class="row" layout:fragment="content">
+        <div class="col-6 offset-3 mt-4 mb-4">
+            <form action="/site/alogina"  method="post" th:object="${customer}">
+                <div class="card">
+                    <div class="card-header">
+                        <b>Login To System</b>
+                    </div>
+                    <div class="card-body">
+                      <div th:if="${message != null}" class="alert alert-primary" role="alert">
+                        <i>[[${message}]]</i>
+                    </div>
+                        <div class="form-group">
+                          <label for="username">Email / Phone Number</label>
+                          <input type="text" th:field="*{name}"  class="form-control" name="username" id="username" aria-describedby="usernameHid" placeholder="Email / Phone Number">
+                          <small id="usernameHid"  class="form-text text-muted">Email/ Phone Number is invalid</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" th:field="*{password}" class="form-control" name="password" id="password" aria-describedby="passwordHid" placeholder="Password">
+                            <small id="passwordHid"  class="form-text text-muted">Password is invalid</small>
+                          </div>
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="checkbox"  class="form-check-input" name="rememberMe" id="rememberMe" value="false">
+                              Remember Me
+                            </label>
+                          </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <button class="btn btn-primary"><i class="fas fa-sign-in-alt mr-1"></i>Login</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</body>
+
+</html>
+

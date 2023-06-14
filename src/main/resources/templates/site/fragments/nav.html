@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+</head>
+
+<body>
+    <div th:fragment="nav">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <a class="navbar-brand" href="#"><img src="https://www.thetechshop.ca/wp-content/uploads/2017/05/TechShop-Logo-2.png" height="76px" alt=""></a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/sitehomepage"><i class="fas fa-home fa-2x"></i><span class="sr-only">(current)</span></a>
+                </li>
+                
+                <li class="nav-item ml-4">
+                  <li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="dropdownId"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+								class="fas fa-align-justify fa-2x" aria-hidden="true"></i> Category</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownId">
+							
+									<a th:each="item : ${listCategories}" th:text="${item.name}" class="dropdown-item" th:href="@{'/sitehomepage/' + ${item.name}}">Login</a>
+									
+							</div>
+					</li>
+                </li>
+                
+                <li class="nav-item ml-4">
+                  <li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="dropdownId"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+								class="fa fa-user fa-2x" aria-hidden="true"></i> My Account</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownId">
+								<div th:if="${!isLogin}">
+									<a class="dropdown-item" href="/site/alogina">Login</a>
+									<a class="dropdown-item" href="ForgotPassword">Forgot Password</a>
+									<a class="dropdown-item" href="/site/accounts/registration">Registation</a>
+								</div>
+								<div th:if="${isLogin}">
+									<a class="dropdown-item" href="/site/alogouta">Logoff</a>
+									<a class="dropdown-item" href="/site/accounts/changePassword">Change Password</a>
+									<a class="dropdown-item" href="/site/accounts/editProfile">Edit Profile</a>
+								</div>
+							</div>
+					</li>
+                </li>
+                
+                <li class="nav-item ml-4">
+                  <a href="/site/cart" class="nav-link"><i class="fas fa-cart-plus fa-2x"></i>Cart</a>
+                </li>
+              </ul>
+              <form action="/sitehomepage/search" method="get" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" name="nameproduct" type="text" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
